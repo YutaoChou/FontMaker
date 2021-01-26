@@ -1,0 +1,74 @@
+﻿<Window x:Class="FontMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FontMaker"
+        mc:Ignorable="d"
+        Title="FontMaker" Height="340" Width="640">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="2">
+            <UniformGrid Rows="3" Columns="6">
+                <TextBlock FontSize="16" VerticalAlignment="Center" TextAlignment="Center" Text="字体高度:"/>
+                <ComboBox VerticalAlignment="Center" SelectedValuePath="Content" SelectionChanged="fontHeightSel" x:Name="fontHeight">
+                    <ComboBoxItem x:Name="h16" Content="16" IsSelected="True"/>
+                    <ComboBoxItem x:Name="h24" Content="24" />
+                    <ComboBoxItem x:Name="h32" Content="32" />
+                    <ComboBoxItem x:Name="h40" Content="40" />
+                    <ComboBoxItem x:Name="h48" Content="48" />
+                    <ComboBoxItem x:Name="h56" Content="56" />
+                    <ComboBoxItem x:Name="h64" Content="64" />
+                    <ComboBoxItem x:Name="h72" Content="72" />
+                    <ComboBoxItem x:Name="h80" Content="80" />
+                    <ComboBoxItem x:Name="h88" Content="88" />
+                    <ComboBoxItem x:Name="h96" Content="96" />
+                </ComboBox>
+                <TextBlock FontSize="16" TextAlignment="Center" Text="编码方式:" Margin="2" />
+                <ComboBox VerticalAlignment="Center" x:Name="fontEncode" SelectedValuePath="Content" SelectionChanged="fontEncodeSel">
+                    <ComboBoxItem x:Name="ascii" Content="ASCII" />
+                    <ComboBoxItem x:Name="gb2312" Content="GB2312" IsSelected="True"/>
+                </ComboBox>
+                <TextBlock FontSize="16" VerticalAlignment="Center" TextAlignment="Center" Text="抗锯齿" />
+                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Unchecked="antiCheck" Checked="antiCheck" x:Name="isAntiAliasing" IsChecked="False"/>
+                <TextBlock TextAlignment="Center" FontSize="16" Text="字体类型:"/>
+                <ComboBox VerticalAlignment="Center" SelectionChanged="fontTypeSel" x:Name="fontType" >
+                </ComboBox>
+                <TextBlock TextAlignment="Center" Text="编码格式:" FontSize="16" />
+                <ComboBox VerticalAlignment="Center" SelectedValuePath="Content" SelectionChanged="fontRangesel" x:Name="fontRange">
+                    <ComboBoxItem x:Name="asciiRange" Content="ASCII" />
+                    <ComboBoxItem x:Name="allRange" Content="All" IsSelected="True"/>
+                    <ComboBoxItem x:Name="customizeRange" Content="Customize"/>
+                </ComboBox>
+                <TextBlock TextAlignment="Center" FontSize="16" Text="加粗" Margin="4,0,4,0" />
+                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Unchecked="boldCheck" Checked="boldCheck" x:Name="isBold" IsChecked="False" Margin="4,0,4,0"/>
+                <TextBlock TextAlignment="Center" Text="采样深度:" FontSize="16"/>
+                <ComboBox VerticalAlignment="Center" SelectedValuePath="Content" SelectionChanged="fontBppSel" x:Name="fontBpp" >
+                    <ComboBoxItem x:Name="Bpp0" Content="None" IsSelected="True" />
+                    <ComboBoxItem x:Name="Bpp2" Content="2Bpp" />
+                    <ComboBoxItem x:Name="Bpp4" Content="4Bpp" />
+                </ComboBox>
+                <TextBlock x:Name="fonLabel" TextAlignment="Center" Text="文字模板:" FontSize="16"/>
+                <TextBlock x:Name="fontModelPath" Visibility="Hidden" TextAlignment="Center" Text="File Path"/>
+                <Button x:Name="fontModel" Content="浏览" Click="bowserFont"/>
+            </UniformGrid>
+            <StackPanel x:Name="fontPreview" Orientation="Vertical" HorizontalAlignment="Center" Margin="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <Image x:Name="fontPreviewCV" UseLayoutRounding="True" Stretch="None" Width="100" Height="100" Margin="20"/>
+                    <Image x:Name="fontPreviewCV2" UseLayoutRounding="True" Stretch="None" Width="100" Height="100" Margin="20"/>
+                </StackPanel>
+                <ProgressBar Visibility="Visible" x:Name="ProgressBarInfo" Margin="5" Height="20" Width="550">
+                    <ProgressBar.Foreground>
+                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                            <GradientStop Color="Red" Offset="0"/>
+                            <GradientStop Color="#FFF0F143" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Foreground>
+                </ProgressBar>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
+                <Button HorizontalAlignment="Right" Width="100" Click="cancle" Content="关闭"/>
+                <Button x:Name="btnGenerateFont" HorizontalAlignment="Right" Width="100" Click="generateFont" Content="生成"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
